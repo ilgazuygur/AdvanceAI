@@ -1,1 +1,649 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ilgaz Uygur — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #0E1330;
+      --ink-2: #151B42;
+      --ink-3: #1C2352;
+      --line: #2A3270;
+      --text: #E9EBF8;
+      --muted: #A3A9D1;
+      --amber: #FFB547;
+      --peri: #8C9EFF;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Figtree", system-ui, -apple-system, sans-serif;
+      background-color: var(--ink);
+      background-image: radial-gradient(circle at 1px 1px, rgba(140, 158, 255, 0.09) 1px, transparent 0);
+      background-size: 28px 28px;
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 2px solid var(--amber);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    .wrap {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ---------- Navigation ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(14, 19, 48, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      text-decoration: none;
+    }
+
+    .brand-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 0 4px rgba(255, 181, 71, 0.18);
+    }
+
+    .links {
+      display: flex;
+      gap: 4px;
+      list-style: none;
+    }
+
+    .links a {
+      display: block;
+      padding: 8px 15px;
+      border-radius: 999px;
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .links a:hover {
+      color: var(--text);
+      background: var(--ink-3);
+    }
+
+    .links a[aria-current="page"] {
+      color: var(--ink);
+      background: var(--text);
+    }
+
+    .links a.gh { color: var(--peri); }
+    .links a.gh:hover { color: var(--text); }
+
+    .menu-btn {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: var(--ink-2);
+      color: var(--text);
+      cursor: pointer;
+      place-items: center;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding: 80px 0 64px;
+    }
+
+    h1 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.6rem, 5.5vw, 4.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+    }
+
+    h1 .sub {
+      display: block;
+      margin-top: 16px;
+      font-weight: 500;
+      font-size: 0.5em;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--muted);
+    }
+
+    .intro {
+      margin-top: 28px;
+      max-width: 52ch;
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .intro strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .tags li.main {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .net-box {
+      position: relative;
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 5 / 4;
+    }
+
+    #net {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
+
+    .net-box figcaption {
+      position: absolute;
+      left: 20px;
+      bottom: 16px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      pointer-events: none;
+    }
+
+    /* ---------- Lower section ---------- */
+    .lower {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding-bottom: 88px;
+    }
+
+    .panel {
+      background: var(--ink-2);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .panel h2 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .version {
+      font-size: 0.85rem;
+      color: var(--amber);
+      border: 1px solid rgba(255, 181, 71, 0.4);
+      padding: 2px 10px;
+      border-radius: 999px;
+    }
+
+    .model dl div {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .model dt {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .model dd { font-weight: 500; }
+
+    .model dd a {
+      color: var(--peri);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    .model dd a:hover { text-decoration: underline; }
+
+    .explore h2 { margin-bottom: 12px; }
+
+    .row {
+      display: block;
+      padding: 16px 0 16px 16px;
+      border-top: 1px solid var(--line);
+      border-left: 2px solid transparent;
+      text-decoration: none;
+      transition: border-color 0.2s;
+    }
+
+    .row-title {
+      display: block;
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      transition: color 0.2s;
+    }
+
+    .row-desc {
+      display: block;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .row:hover { border-left-color: var(--amber); }
+    .row:hover .row-title { color: var(--amber); }
+
+    /* ---------- Footer ---------- */
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ---------- Mobile ---------- */
+    @media (max-width: 860px) {
+      .menu-btn { display: grid; }
+
+      .links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        padding: 12px 24px 20px;
+        background: var(--ink);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .links.open { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 48px 0 40px;
+      }
+
+      .lower { grid-template-columns: 1fr; }
+
+      .model dl div {
+        grid-template-columns: 1fr;
+        gap: 2px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-dot" aria-hidden="true"></span>
+        Ilgaz Uygur
+      </a>
+
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+
+      <ul class="links" id="nav-links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="documentation.html">Documentation</a></li>
+        <li><a class="gh" href="https://github.com/ilgazuygur" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <h1>
+          Hello, I’m Ilgaz.
+          <span class="sub">12th grade student at Hisar Okulları.</span>
+        </h1>
+
+        <p class="intro">
+          I’m currently taking <strong>Advanced AI Concepts</strong>. I enjoy coding with
+          <strong>Python</strong>, <strong>Java</strong>, and <strong>Swift</strong>.
+          This website is where I’ll share my classwork, notes, and progress as I
+          learn how AI systems actually work.
+        </p>
+
+        <ul class="tags">
+          <li class="main">Advanced AI Concepts</li>
+          <li>Python</li>
+          <li>Java</li>
+          <li>Swift</li>
+        </ul>
+      </div>
+
+      <figure class="net-box">
+        <canvas id="net" aria-label="Animated diagram of a small neural network"></canvas>
+        <figcaption>Hover or tap a neuron to fire it</figcaption>
+      </figure>
+    </section>
+
+    <div class="lower">
+      <section class="panel model" aria-labelledby="model-title">
+        <div class="panel-head">
+          <h2 id="model-title">Model card</h2>
+          <span class="version">v12.0</span>
+        </div>
+        <dl>
+          <div>
+            <dt>Course focus</dt>
+            <dd>Advanced AI Concepts</dd>
+          </div>
+          <div>
+            <dt>Languages</dt>
+            <dd>Python, Java, Swift</dd>
+          </div>
+          <div>
+            <dt>Interests</dt>
+            <dd>Computer Science, AI &amp; Math</dd>
+          </div>
+          <div>
+            <dt>Goal this year</dt>
+            <dd>Understand how AI models learn and build my own AI projects</dd>
+          </div>
+          <div>
+            <dt>Email</dt>
+            <dd><a href="mailto:ilgaz.uygur@hisarschool.k12.tr">ilgaz.uygur@hisarschool.k12.tr</a></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="panel explore" aria-labelledby="explore-title">
+        <h2 id="explore-title">On this site</h2>
+        <a class="row" href="projects.html">
+          <span class="row-title">Projects</span>
+          <span class="row-desc">What I build in class, with code and results.</span>
+        </a>
+        <a class="row" href="documentation.html">
+          <span class="row-title">Documentation</span>
+          <span class="row-desc">Notes and write-ups on how each project works.</span>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Ilgaz Uygur</div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.getElementById("nav-links");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", isOpen);
+    });
+
+    // Neural network animation
+    (() => {
+      const canvas = document.getElementById("net");
+      const ctx = canvas.getContext("2d");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const LAYERS = [4, 6, 6, 3];
+      const MAX_PULSES = 80;
+
+      let nodes = [];
+      let edges = [];
+      let pulses = [];
+      let width = 0;
+      let height = 0;
+
+      function build() {
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        width = rect.width;
+        height = rect.height;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        nodes = [];
+        edges = [];
+        pulses = [];
+
+        const padX = width * 0.13;
+        const padY = height * 0.15;
+
+        LAYERS.forEach((count, layer) => {
+          const x = padX + (width - 2 * padX) * layer / (LAYERS.length - 1);
+          for (let i = 0; i < count; i++) {
+            const y = padY + (height - 2 * padY) * i / (count - 1);
+            nodes.push({ x, y, layer, act: 0, out: [] });
+          }
+        });
+
+        nodes.forEach((from, fromIndex) => {
+          nodes.forEach((to, toIndex) => {
+            if (to.layer === from.layer + 1) {
+              from.out.push(edges.length);
+              edges.push({ from: fromIndex, to: toIndex, heat: 0 });
+            }
+          });
+        });
+      }
+
+      function fire(nodeIndex, spreadToAll) {
+        const node = nodes[nodeIndex];
+        node.act = 1;
+        if (node.out.length === 0) {
+          return;
+        }
+        const chosen = spreadToAll
+          ? node.out
+          : [node.out[Math.floor(Math.random() * node.out.length)]];
+
+        chosen.forEach(edgeIndex => {
+          if (pulses.length < MAX_PULSES) {
+            pulses.push({ edge: edgeIndex, t: 0, speed: 0.012 + Math.random() * 0.01 });
+          }
+        });
+      }
+
+      function step() {
+        for (let i = pulses.length - 1; i >= 0; i--) {
+          const pulse = pulses[i];
+          pulse.t += pulse.speed;
+          edges[pulse.edge].heat = Math.max(edges[pulse.edge].heat, 0.6);
+
+          if (pulse.t >= 1) {
+            pulses.splice(i, 1);
+            const target = edges[pulse.edge].to;
+            if (Math.random() < 0.8) {
+              fire(target, false);
+            } else {
+              nodes[target].act = 1;
+            }
+          }
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, width, height);
+
+        edges.forEach(edge => {
+          const a = nodes[edge.from];
+          const b = nodes[edge.to];
+          ctx.strokeStyle = `rgba(140, 158, 255, ${0.12 + edge.heat * 0.5})`;
+          ctx.lineWidth = 1 + edge.heat * 1.5;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+          edge.heat *= 0.94;
+        });
+
+        pulses.forEach(pulse => {
+          const edge = edges[pulse.edge];
+          const a = nodes[edge.from];
+          const b = nodes[edge.to];
+          const x = a.x + (b.x - a.x) * pulse.t;
+          const y = a.y + (b.y - a.y) * pulse.t;
+          ctx.fillStyle = "#FFB547";
+          ctx.shadowColor = "#FFB547";
+          ctx.shadowBlur = 12;
+          ctx.beginPath();
+          ctx.arc(x, y, 3, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+
+        nodes.forEach(node => {
+          const radius = 7 + node.act * 3;
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+          ctx.fillStyle = "#151B42";
+          ctx.fill();
+
+          if (node.act > 0.05) {
+            ctx.fillStyle = `rgba(255, 181, 71, ${node.act * 0.8})`;
+            ctx.fill();
+            ctx.strokeStyle = "#FFB547";
+          } else {
+            ctx.strokeStyle = "#8C9EFF";
+          }
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          node.act *= 0.95;
+        });
+      }
+
+      let lastAutoFire = 0;
+
+      function loop(time) {
+        if (time - lastAutoFire > 700) {
+          fire(Math.floor(Math.random() * LAYERS[0]), false);
+          lastAutoFire = time;
+        }
+        step();
+        draw();
+        requestAnimationFrame(loop);
+      }
+
+      let lastHit = -1;
+
+      function handlePointer(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        const hit = nodes.findIndex(node => Math.hypot(node.x - x, node.y - y) < 18);
+
+        canvas.style.cursor = hit >= 0 ? "pointer" : "default";
+        if (hit >= 0 && hit !== lastHit) {
+          fire(hit, true);
+          if (reduceMotion) {
+            draw();
+          }
+        }
+        lastHit = hit;
+      }
+
+      canvas.addEventListener("pointermove", handlePointer);
+      canvas.addEventListener("pointerdown", event => {
+        lastHit = -1;
+        handlePointer(event);
+      });
+
+      window.addEventListener("resize", () => {
+        build();
+        if (reduceMotion) {
+          draw();
+        }
+      });
+
+      build();
+      if (reduceMotion) {
+        draw();
+      } else {
+        requestAnimationFrame(loop);
+      }
+    })();
+  </script>
+</body>
+</html>
