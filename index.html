@@ -1,16 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ilgaz Uygur — Advanced AI</title>
-  <meta name="description"
-        content="Ilgaz Uygur's Advanced AI coursework: Q-learning experiments, results, and a trained FrozenLake agent.">
-
+  <title>Ilgaz Uygur — Home</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --ink: #0E1330;
@@ -21,39 +18,28 @@
       --muted: #A3A9D1;
       --amber: #FFB547;
       --peri: #8C9EFF;
-      --green: #86E3B1;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 92px;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: "Figtree", system-ui, -apple-system, sans-serif;
       background-color: var(--ink);
-      background-image: radial-gradient(
-        circle at 1px 1px,
-        rgba(140, 158, 255, 0.09) 1px,
-        transparent 0
-      );
+      background-image: radial-gradient(circle at 1px 1px, rgba(140, 158, 255, 0.09) 1px, transparent 0);
       background-size: 28px 28px;
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     a { color: inherit; }
 
     :focus-visible {
       outline: 2px solid var(--amber);
-      outline-offset: 4px;
+      outline-offset: 3px;
+      border-radius: 8px;
     }
 
     .wrap {
@@ -63,42 +49,12 @@
       padding: 0 24px;
     }
 
-    h1, h2, h3, .brand, .row-title, .stat-value {
-      font-family: "Bricolage Grotesque", sans-serif;
-    }
-
-    h2 {
-      font-size: clamp(1.8rem, 4vw, 2.6rem);
-      line-height: 1.15;
-      letter-spacing: -0.025em;
-    }
-
-    h3 {
-      font-size: 1.3rem;
-      line-height: 1.3;
-      margin-bottom: 12px;
-    }
-
-    p + p { margin-top: 14px; }
-
-    .muted { color: var(--muted); }
-
-    .eyebrow {
-      color: var(--amber);
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    /* Navigation */
-
+    /* ---------- Navigation ---------- */
     .nav {
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(14, 19, 48, 0.92);
+      background: rgba(14, 19, 48, 0.85);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
@@ -115,6 +71,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      font-family: "Bricolage Grotesque", sans-serif;
       font-weight: 700;
       font-size: 1.15rem;
       text-decoration: none;
@@ -149,7 +106,13 @@
       background: var(--ink-3);
     }
 
+    .links a[aria-current="page"] {
+      color: var(--ink);
+      background: var(--text);
+    }
+
     .links a.gh { color: var(--peri); }
+    .links a.gh:hover { color: var(--text); }
 
     .menu-btn {
       display: none;
@@ -163,8 +126,7 @@
       place-items: center;
     }
 
-    /* Introduction */
-
+    /* ---------- Hero ---------- */
     .hero {
       display: grid;
       grid-template-columns: 1.05fr 1fr;
@@ -174,6 +136,7 @@
     }
 
     h1 {
+      font-family: "Bricolage Grotesque", sans-serif;
       font-weight: 800;
       font-size: clamp(2.6rem, 5.5vw, 4.3rem);
       line-height: 1.02;
@@ -197,7 +160,10 @@
       color: var(--muted);
     }
 
-    .intro strong { color: var(--text); }
+    .intro strong {
+      color: var(--text);
+      font-weight: 600;
+    }
 
     .tags {
       display: flex;
@@ -213,6 +179,7 @@
       border-radius: 999px;
       font-size: 0.92rem;
       font-weight: 500;
+      color: var(--text);
     }
 
     .tags li.main {
@@ -235,29 +202,27 @@
       display: block;
       width: 100%;
       height: 100%;
+      touch-action: none;
     }
 
     .net-box figcaption {
       position: absolute;
       left: 20px;
-      right: 20px;
       bottom: 16px;
       font-size: 0.85rem;
       color: var(--muted);
       pointer-events: none;
     }
 
-    /* Shared panels */
-
+    /* ---------- Lower section ---------- */
     .lower {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
-      padding-bottom: 72px;
+      padding-bottom: 88px;
     }
 
     .panel {
-      min-width: 0;
       background: var(--ink-2);
       border: 1px solid var(--line);
       border-radius: 20px;
@@ -265,16 +230,17 @@
     }
 
     .panel h2 {
+      font-family: "Bricolage Grotesque", sans-serif;
+      font-weight: 700;
       font-size: 1.5rem;
       letter-spacing: -0.01em;
     }
 
     .panel-head {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .version {
@@ -303,7 +269,7 @@
     .model dd a {
       color: var(--peri);
       text-decoration: none;
-      overflow-wrap: anywhere;
+      word-break: break-all;
     }
 
     .model dd a:hover { text-decoration: underline; }
@@ -321,6 +287,7 @@
 
     .row-title {
       display: block;
+      font-family: "Bricolage Grotesque", sans-serif;
       font-weight: 700;
       font-size: 1.2rem;
       transition: color 0.2s;
@@ -335,247 +302,16 @@
     .row:hover { border-left-color: var(--amber); }
     .row:hover .row-title { color: var(--amber); }
 
-    /* Assignment */
-
-    .assignment {
-      padding: 64px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-intro {
-      max-width: 720px;
-      margin-top: 20px;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
-    .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 11px 18px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--ink-3);
-      color: var(--text);
-      font: inherit;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .button:hover {
-      background: var(--ink-2);
-      border-color: var(--peri);
-    }
-
-    .button.primary {
-      background: var(--amber);
-      border-color: var(--amber);
-      color: var(--ink);
-    }
-
-    .button.primary:hover { background: #ffc66f; }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin: 32px 0 24px;
-    }
-
-    .stat {
-      background: var(--ink-2);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .stat-value {
-      display: block;
-      font-size: 2.8rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: var(--amber);
-      margin-bottom: 10px;
-    }
-
-    .stat-label {
-      display: block;
-      font-weight: 600;
-    }
-
-    .stat-note {
-      display: block;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 6px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    .detail-list {
-      padding-left: 20px;
-      color: var(--muted);
-    }
-
-    .detail-list li + li { margin-top: 10px; }
-    .detail-list strong { color: var(--text); }
-
-    .results-panel { margin-top: 24px; }
-
-    .table-scroll {
-      overflow-x: auto;
-      margin-top: 18px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.95rem;
-      text-align: left;
-    }
-
-    caption {
-      text-align: left;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    th, td {
-      padding: 14px 12px;
-      border-bottom: 1px solid var(--line);
-      white-space: nowrap;
-    }
-
-    thead th {
-      color: var(--muted);
-      font-size: 0.85rem;
-      font-weight: 500;
-    }
-
-    tbody th { font-weight: 500; }
-
-    .best-row { background: rgba(134, 227, 177, 0.06); }
-    .best-row td:last-child { color: var(--green); }
-
-    .note {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-top: 18px;
-    }
-
-    .media-panel {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .media-frame {
-      display: grid;
-      place-items: center;
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .media-frame img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    .gif-frame {
-      background: #d6edf5;
-    }
-
-    .gif-frame img {
-      max-width: 420px;
-    }
-
-    .media-panel figcaption {
-      margin-top: 16px;
-      font-size: 0.95rem;
-      color: var(--muted);
-    }
-
-    .media-panel .buttons { margin-top: 16px; }
-
-    .analysis {
-      margin-top: 24px;
-      border-left: 3px solid var(--amber);
-    }
-
-    /* Documentation */
-
-    .documentation {
-      padding: 48px 0 80px;
-      border-top: 1px solid var(--line);
-    }
-
-    .doc-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      margin-top: 28px;
-    }
-
-    .doc-card {
-      display: block;
-      padding: 24px;
-      background: var(--ink-2);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      text-decoration: none;
-      transition: border-color 0.2s;
-    }
-
-    .doc-card:hover { border-color: var(--amber); }
-
-    .doc-card h3 {
-      font-size: 1.15rem;
-      color: var(--peri);
-    }
-
-    .doc-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
+    /* ---------- Footer ---------- */
     footer {
+      margin-top: auto;
       border-top: 1px solid var(--line);
       padding: 28px 0;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    footer .wrap {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    footer a {
-      color: var(--peri);
-      text-decoration: none;
-    }
-
-    footer a:hover { text-decoration: underline; }
-
+    /* ---------- Mobile ---------- */
     @media (max-width: 860px) {
       .menu-btn { display: grid; }
 
@@ -599,85 +335,58 @@
         padding: 48px 0 40px;
       }
 
-      .lower, .two-col, .doc-grid {
-        grid-template-columns: 1fr;
-      }
+      .lower { grid-template-columns: 1fr; }
 
       .model dl div {
         grid-template-columns: 1fr;
         gap: 2px;
       }
-
-      .assignment { padding-top: 40px; }
-    }
-
-    @media (max-width: 560px) {
-      .wrap { padding: 0 18px; }
-      .panel { padding: 22px; }
-      .stats { grid-template-columns: 1fr; }
-      .stat-value { font-size: 2.4rem; }
-      .buttons .button { width: 100%; }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
       * { transition: none !important; }
     }
   </style>
 </head>
-
 <body>
+
   <header class="nav">
     <div class="wrap">
-      <a class="brand" href="#home">
+      <a class="brand" href="index.html">
         <span class="brand-dot" aria-hidden="true"></span>
         Ilgaz Uygur
       </a>
 
-      <button class="menu-btn"
-              type="button"
-              aria-label="Open menu"
-              aria-expanded="false"
-              aria-controls="nav-links">
-        <svg width="20" height="20" viewBox="0 0 24 24"
-             fill="none" stroke="currentColor" stroke-width="2"
-             stroke-linecap="round" aria-hidden="true">
-          <line x1="4" y1="7" x2="20" y2="7"></line>
-          <line x1="4" y1="12" x2="20" y2="12"></line>
-          <line x1="4" y1="17" x2="20" y2="17"></line>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"/>
+          <line x1="4" y1="12" x2="20" y2="12"/>
+          <line x1="4" y1="17" x2="20" y2="17"/>
         </svg>
       </button>
 
-      <nav aria-label="Main navigation">
-        <ul class="links" id="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#documentation">Documentation</a></li>
-          <li>
-            <a class="gh" href="https://github.com/ilgazuygur"
-               target="_blank" rel="noopener noreferrer">
-              GitHub ↗
-            </a>
-          </li>
-        </ul>
-      </nav>
+      <ul class="links" id="nav-links">
+        <li><a href="index.html" aria-current="page">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="documentation.html">Documentation</a></li>
+        <li><a class="gh" href="https://github.com/ilgazuygur" target="_blank" rel="noopener">GitHub ↗</a></li>
+      </ul>
     </div>
   </header>
 
-  <main class="wrap" id="home">
-    <section class="hero" aria-labelledby="intro-title">
+  <main class="wrap">
+    <section class="hero">
       <div>
-        <h1 id="intro-title">
+        <h1>
           Hello, I’m Ilgaz.
           <span class="sub">12th grade student at Hisar Okulları.</span>
         </h1>
 
         <p class="intro">
-          I’m currently taking <strong>Advanced AI Concepts</strong>.
-          I enjoy coding with <strong>Python</strong>,
-          <strong>Java</strong>, and <strong>Swift</strong>.
-          This website is where I share my classwork, notes, and progress
-          as I learn how AI systems actually work.
+          I’m currently taking <strong>Advanced AI Concepts</strong>. I enjoy coding with
+          <strong>Python</strong>, <strong>Java</strong>, and <strong>Swift</strong>.
+          This website is where I’ll share my classwork, notes, and progress as I
+          learn how AI systems actually work.
         </p>
 
         <ul class="tags">
@@ -689,11 +398,7 @@
       </div>
 
       <figure class="net-box">
-        <canvas id="net"
-                role="img"
-                aria-label="Decorative animation of a small neural network">
-          A diagram of a small neural network.
-        </canvas>
+        <canvas id="net" aria-label="Animated diagram of a small neural network"></canvas>
         <figcaption>Hover or tap a neuron to fire it</figcaption>
       </figure>
     </section>
@@ -704,7 +409,6 @@
           <h2 id="model-title">Model card</h2>
           <span class="version">v12.0</span>
         </div>
-
         <dl>
           <div>
             <dt>Course focus</dt>
@@ -724,399 +428,44 @@
           </div>
           <div>
             <dt>Email</dt>
-            <dd>
-              <a href="mailto:ilgaz.uygur@hisarschool.k12.tr">
-                ilgaz.uygur@hisarschool.k12.tr
-              </a>
-            </dd>
+            <dd><a href="mailto:ilgaz.uygur@hisarschool.k12.tr">ilgaz.uygur@hisarschool.k12.tr</a></dd>
           </div>
         </dl>
       </section>
 
       <section class="panel explore" aria-labelledby="explore-title">
         <h2 id="explore-title">On this site</h2>
-
-        <a class="row" href="#projects">
+        <a class="row" href="projects.html">
           <span class="row-title">Projects</span>
-          <span class="row-desc">
-            What I build in class, with code and results.
-          </span>
+          <span class="row-desc">What I build in class, with code and results.</span>
         </a>
-
-        <a class="row" href="#documentation">
+        <a class="row" href="documentation.html">
           <span class="row-title">Documentation</span>
-          <span class="row-desc">
-            Explanations, experiment data, and source code.
-          </span>
+          <span class="row-desc">Notes and write-ups on how each project works.</span>
         </a>
       </section>
     </div>
-
-    <section class="assignment" id="projects"
-             aria-labelledby="assignment-title">
-      <p class="eyebrow">Advanced AI · Assignment 01</p>
-      <h2 id="assignment-title">Teach an Agent to Learn</h2>
-
-      <p class="section-intro">
-        Can an agent learn to cross a frozen lake?
-        I used Gymnasium and Q-learning to train an agent to reach the
-        goal while avoiding holes, then compared its performance with
-        an agent that moves randomly.
-      </p>
-
-      <ul class="tags">
-        <li class="main">Reinforcement Learning</li>
-        <li>Gymnasium</li>
-        <li>FrozenLake</li>
-        <li>Q-Learning</li>
-      </ul>
-
-      <div class="buttons">
-        <a class="button primary" href="#demonstration">
-          Watch the agent
-        </a>
-        <a class="button"
-           href="https://github.com/ilgazuygur/AdvanceAI/tree/main/src"
-           target="_blank" rel="noopener noreferrer">
-          View source code ↗
-        </a>
-        <a class="button"
-           href="https://github.com/ilgazuygur/AdvanceAI/blob/main/README.md"
-           target="_blank" rel="noopener noreferrer">
-          Read the report ↗
-        </a>
-      </div>
-
-      <div class="stats">
-        <div class="stat">
-          <span class="stat-value">1%</span>
-          <span class="stat-label">Random baseline</span>
-          <span class="stat-note">1 successful episode out of 100</span>
-        </div>
-
-        <div class="stat">
-          <span class="stat-value">72%</span>
-          <span class="stat-label">Best of three experiments</span>
-          <span class="stat-note">5,000 training episodes · 100 test episodes</span>
-        </div>
-
-        <div class="stat">
-          <span class="stat-value">73%</span>
-          <span class="stat-label">Saved agent evaluation</span>
-          <span class="stat-note">Separate training run used for the GIF</span>
-        </div>
-      </div>
-
-      <div class="two-col">
-        <article class="panel">
-          <h3>The environment</h3>
-          <p class="muted">
-            FrozenLake is a 4×4 grid with a starting tile, frozen tiles,
-            holes, and a goal. The agent can choose left, down, right,
-            or up.
-          </p>
-          <p class="muted">
-            The lake is slippery, so an action does not always move the
-            agent in the intended direction. Reaching the goal gives
-            a reward of 1; all other transitions give 0.
-          </p>
-        </article>
-
-        <article class="panel">
-          <h3>How the agent learns</h3>
-          <ul class="detail-list">
-            <li>
-              <strong>Remember:</strong> a Q-table stores a value for
-              each state and action.
-            </li>
-            <li>
-              <strong>Explore:</strong> epsilon-greedy selection mixes
-              random actions with the best known actions.
-            </li>
-            <li>
-              <strong>Update:</strong> rewards and estimated future
-              values improve the table after each step.
-            </li>
-            <li>
-              <strong>Evaluate:</strong> the trained agent chooses the
-              highest Q-value without further learning.
-            </li>
-          </ul>
-        </article>
-      </div>
-
-      <article class="panel results-panel" aria-labelledby="results-title">
-        <h3 id="results-title">Three experiments, one changed variable</h3>
-        <p class="muted">
-          I changed the number of training episodes while keeping the
-          other settings fixed: alpha = 0.8, gamma = 0.95, initial
-          epsilon = 1.0, epsilon decay = 0.995, and minimum epsilon = 0.01.
-        </p>
-
-        <div class="table-scroll" tabindex="0"
-             role="region" aria-label="Experiment results table">
-          <table>
-            <caption>Each agent was evaluated over 100 episodes.</caption>
-            <thead>
-              <tr>
-                <th scope="col">Experiment</th>
-                <th scope="col">Training episodes</th>
-                <th scope="col">Alpha</th>
-                <th scope="col">Gamma</th>
-                <th scope="col">Initial epsilon</th>
-                <th scope="col">Success rate</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">Random agent</th>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>1%</td>
-              </tr>
-              <tr>
-                <th scope="row">Experiment 1</th>
-                <td>1,000</td>
-                <td>0.8</td>
-                <td>0.95</td>
-                <td>1.0</td>
-                <td>70%</td>
-              </tr>
-              <tr>
-                <th scope="row">Experiment 2</th>
-                <td>3,000</td>
-                <td>0.8</td>
-                <td>0.95</td>
-                <td>1.0</td>
-                <td>58%</td>
-              </tr>
-              <tr class="best-row">
-                <th scope="row">Experiment 3</th>
-                <td>5,000</td>
-                <td>0.8</td>
-                <td>0.95</td>
-                <td>1.0</td>
-                <td>72%</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <p class="note">
-          Random baseline average reward: 0.01 per episode.
-          The later 73% result belongs to a separate training run used
-          to save the demonstration agent.
-        </p>
-      </article>
-
-      <div class="two-col">
-        <figure class="panel media-panel">
-          <h3>Experiment comparison</h3>
-
-          <div class="media-frame">
-            <img src="results/learning_curve.png"
-                 alt="Q-learning success rates of 70%, 58%, and 72% for 1,000, 3,000, and 5,000 training episodes, compared with a 1% random baseline."
-                 loading="lazy">
-          </div>
-
-          <figcaption>
-            Each point represents a separate training experiment.
-            These are not checkpoints from one continuous training run.
-          </figcaption>
-
-          <div class="buttons">
-            <a class="button" href="results/learning_curve.png"
-               target="_blank" rel="noopener noreferrer">
-              Open full graph ↗
-            </a>
-          </div>
-        </figure>
-
-        <figure class="panel media-panel" id="demonstration">
-          <h3>The learned agent in action</h3>
-
-          <div class="media-frame gif-frame" id="gif-frame">
-            <img id="agent-gif"
-                 src="results/learned_agent.gif"
-                 alt="Recorded successful episode of the trained FrozenLake agent reaching the goal."
-                 loading="lazy">
-          </div>
-
-          <div class="buttons">
-            <button class="button" id="gif-toggle"
-                    type="button" aria-controls="gif-frame"
-                    aria-expanded="true">
-              Hide animation
-            </button>
-            <a class="button" href="results/learned_agent.gif"
-               target="_blank" rel="noopener noreferrer">
-              Open GIF ↗
-            </a>
-          </div>
-
-          <figcaption>
-            The script loads the saved Q-table and records the first
-            successful episode, allowing up to 20 attempts.
-            This recording succeeded on the first attempt.
-            The GIF is a demonstration; the 100-episode test measures
-            performance.
-          </figcaption>
-        </figure>
-      </div>
-
-      <article class="panel analysis">
-        <h3>What changed, and why?</h3>
-        <p class="muted">
-          All three Q-learning experiments performed better than the
-          random baseline. However, more training did not produce a
-          steady improvement: the 3,000-episode run performed worse
-          than the 1,000-episode run.
-        </p>
-        <p class="muted">
-          Random exploration and slippery movement can produce different
-          outcomes between runs. Repeating each experiment with multiple
-          random seeds would help determine whether the differences are
-          consistent.
-        </p>
-      </article>
-
-      <article class="panel results-panel">
-        <h3>Learning or luck?</h3>
-        <p class="muted">
-          I evaluated each trained agent over 100 episodes instead of
-          judging it from one successful game. The Q-learning experiments
-          achieved success rates of 58–72%, compared with 1% for the
-          random agent. During evaluation, the agent used its learned
-          Q-table without exploration or further updates, which supports
-          the conclusion that its learned action choices were useful.
-          However, repeated training and evaluation with multiple random
-          seeds would provide stronger evidence and help measure how
-          consistent the improvement is.
-        </p>
-      </article>
-    </section>
-
-    <section class="documentation" id="documentation"
-             aria-labelledby="documentation-title">
-      <p class="eyebrow">Behind the project</p>
-      <h2 id="documentation-title">Documentation &amp; files</h2>
-
-      <p class="section-intro">
-        The full report includes the environment explanation,
-        Q-learning algorithm, experiments, reflections, AI usage,
-        and instructions for running the project.
-      </p>
-
-      <div class="doc-grid">
-        <a class="doc-card"
-           href="https://github.com/ilgazuygur/AdvanceAI/blob/main/README.md"
-           target="_blank" rel="noopener noreferrer">
-          <h3>Project report ↗</h3>
-          <p>
-            Read the complete assignment, including the AI Usage section
-            and final question.
-          </p>
-        </a>
-
-        <a class="doc-card"
-           href="https://github.com/ilgazuygur/AdvanceAI/tree/main/src"
-           target="_blank" rel="noopener noreferrer">
-          <h3>Python source code ↗</h3>
-          <p>
-            Explore the random agent, Q-learning, graph generation,
-            and demonstration scripts.
-          </p>
-        </a>
-
-        <a class="doc-card" href="results/results.csv" download>
-          <h3>Experiment data ↓</h3>
-          <p>
-            Download the CSV containing the random baseline and the
-            three recorded training experiments.
-          </p>
-        </a>
-      </div>
-
-      <p class="note">
-        Built with AI assistance. Details about prompts, suggestions,
-        and modifications are documented in the project README.
-      </p>
-    </section>
   </main>
 
   <footer>
-    <div class="wrap">
-      <span>© 2026 Ilgaz Uygur</span>
-      <a href="https://github.com/ilgazuygur/AdvanceAI"
-         target="_blank" rel="noopener noreferrer">
-        Advanced AI repository ↗
-      </a>
-    </div>
+    <div class="wrap">© 2026 Ilgaz Uygur</div>
   </footer>
 
   <script>
-    // Mobile navigation
+    // Mobile menu
     const menuBtn = document.querySelector(".menu-btn");
     const navLinks = document.getElementById("nav-links");
 
-    function closeMenu() {
-      navLinks.classList.remove("open");
-      menuBtn.setAttribute("aria-expanded", "false");
-      menuBtn.setAttribute("aria-label", "Open menu");
-    }
-
     menuBtn.addEventListener("click", () => {
       const isOpen = navLinks.classList.toggle("open");
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
-      menuBtn.setAttribute(
-        "aria-label",
-        isOpen ? "Close menu" : "Open menu"
-      );
+      menuBtn.setAttribute("aria-expanded", isOpen);
     });
 
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", closeMenu);
-    });
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape" &&
-          navLinks.classList.contains("open")) {
-        closeMenu();
-        menuBtn.focus();
-      }
-    });
-
-    // Allow visitors to hide the looping GIF.
-    const motionPreference = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    );
-    const gifFrame = document.getElementById("gif-frame");
-    const gifToggle = document.getElementById("gif-toggle");
-
-    function setGifVisible(visible) {
-      gifFrame.style.display = visible ? "grid" : "none";
-      gifToggle.setAttribute("aria-expanded", String(visible));
-      gifToggle.textContent = visible
-        ? "Hide animation"
-        : "Show animation";
-    }
-
-    setGifVisible(!motionPreference.matches);
-
-    gifToggle.addEventListener("click", () => {
-      const visible = gifToggle.getAttribute("aria-expanded") === "true";
-      setGifVisible(!visible);
-    });
-
-    // Decorative neural network animation
+    // Neural network animation
     (() => {
       const canvas = document.getElementById("net");
       const ctx = canvas.getContext("2d");
-
-      if (!ctx) return;
-
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const LAYERS = [4, 6, 6, 3];
       const MAX_PULSES = 80;
 
@@ -1125,38 +474,27 @@
       let pulses = [];
       let width = 0;
       let height = 0;
-      let animationId = null;
-      let lastAutoFire = 0;
-      let lastTime = 0;
-      let lastHit = -1;
-      let inView = true;
 
       function build() {
         const rect = canvas.getBoundingClientRect();
         const dpr = window.devicePixelRatio || 1;
-
         width = rect.width;
         height = rect.height;
-        canvas.width = Math.round(width * dpr);
-        canvas.height = Math.round(height * dpr);
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
         nodes = [];
         edges = [];
         pulses = [];
-        lastHit = -1;
 
         const padX = width * 0.13;
         const padY = height * 0.15;
 
         LAYERS.forEach((count, layer) => {
-          const x = padX +
-            (width - 2 * padX) * layer / (LAYERS.length - 1);
-
+          const x = padX + (width - 2 * padX) * layer / (LAYERS.length - 1);
           for (let i = 0; i < count; i++) {
-            const y = padY +
-              (height - 2 * padY) * i / (count - 1);
-
+            const y = padY + (height - 2 * padY) * i / (count - 1);
             nodes.push({ x, y, layer, act: 0, out: [] });
           }
         });
@@ -1165,11 +503,7 @@
           nodes.forEach((to, toIndex) => {
             if (to.layer === from.layer + 1) {
               from.out.push(edges.length);
-              edges.push({
-                from: fromIndex,
-                to: toIndex,
-                heat: 0
-              });
+              edges.push({ from: fromIndex, to: toIndex, heat: 0 });
             }
           });
         });
@@ -1177,41 +511,30 @@
 
       function fire(nodeIndex, spreadToAll) {
         const node = nodes[nodeIndex];
-        if (!node) return;
-
         node.act = 1;
-
-        if (node.out.length === 0) return;
-
+        if (node.out.length === 0) {
+          return;
+        }
         const chosen = spreadToAll
           ? node.out
           : [node.out[Math.floor(Math.random() * node.out.length)]];
 
         chosen.forEach(edgeIndex => {
           if (pulses.length < MAX_PULSES) {
-            pulses.push({
-              edge: edgeIndex,
-              t: 0,
-              speed: 0.012 + Math.random() * 0.01
-            });
+            pulses.push({ edge: edgeIndex, t: 0, speed: 0.012 + Math.random() * 0.01 });
           }
         });
       }
 
-      function step(delta) {
+      function step() {
         for (let i = pulses.length - 1; i >= 0; i--) {
           const pulse = pulses[i];
-          pulse.t += pulse.speed * delta;
-
-          edges[pulse.edge].heat = Math.max(
-            edges[pulse.edge].heat,
-            0.6
-          );
+          pulse.t += pulse.speed;
+          edges[pulse.edge].heat = Math.max(edges[pulse.edge].heat, 0.6);
 
           if (pulse.t >= 1) {
             pulses.splice(i, 1);
             const target = edges[pulse.edge].to;
-
             if (Math.random() < 0.8) {
               fire(target, false);
             } else {
@@ -1221,22 +544,19 @@
         }
       }
 
-      function draw(delta = 1) {
+      function draw() {
         ctx.clearRect(0, 0, width, height);
 
         edges.forEach(edge => {
           const a = nodes[edge.from];
           const b = nodes[edge.to];
-
-          ctx.strokeStyle =
-            `rgba(140, 158, 255, ${0.12 + edge.heat * 0.5})`;
+          ctx.strokeStyle = `rgba(140, 158, 255, ${0.12 + edge.heat * 0.5})`;
           ctx.lineWidth = 1 + edge.heat * 1.5;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
           ctx.stroke();
-
-          edge.heat *= Math.pow(0.94, delta);
+          edge.heat *= 0.94;
         });
 
         pulses.forEach(pulse => {
@@ -1245,7 +565,6 @@
           const b = nodes[edge.to];
           const x = a.x + (b.x - a.x) * pulse.t;
           const y = a.y + (b.y - a.y) * pulse.t;
-
           ctx.fillStyle = "#FFB547";
           ctx.shadowColor = "#FFB547";
           ctx.shadowBlur = 12;
@@ -1257,114 +576,73 @@
 
         nodes.forEach(node => {
           const radius = 7 + node.act * 3;
-
           ctx.beginPath();
           ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
           ctx.fillStyle = "#151B42";
           ctx.fill();
 
           if (node.act > 0.05) {
-            ctx.fillStyle =
-              `rgba(255, 181, 71, ${node.act * 0.8})`;
+            ctx.fillStyle = `rgba(255, 181, 71, ${node.act * 0.8})`;
             ctx.fill();
             ctx.strokeStyle = "#FFB547";
           } else {
             ctx.strokeStyle = "#8C9EFF";
           }
-
           ctx.lineWidth = 2;
           ctx.stroke();
-          node.act *= Math.pow(0.95, delta);
+          node.act *= 0.95;
         });
       }
 
+      let lastAutoFire = 0;
+
       function loop(time) {
-        const delta = lastTime
-          ? Math.min((time - lastTime) / 16.667, 3)
-          : 1;
-
-        lastTime = time;
-
         if (time - lastAutoFire > 700) {
           fire(Math.floor(Math.random() * LAYERS[0]), false);
           lastAutoFire = time;
         }
-
-        step(delta);
-        draw(delta);
-        animationId = requestAnimationFrame(loop);
+        step();
+        draw();
+        requestAnimationFrame(loop);
       }
 
-      function updateAnimation() {
-        const shouldAnimate =
-          !motionPreference.matches && !document.hidden && inView;
-
-        if (shouldAnimate && animationId === null) {
-          lastTime = 0;
-          animationId = requestAnimationFrame(loop);
-        } else if (!shouldAnimate && animationId !== null) {
-          cancelAnimationFrame(animationId);
-          animationId = null;
-        }
-
-        if (!shouldAnimate) draw();
-      }
+      let lastHit = -1;
 
       function handlePointer(event) {
         const rect = canvas.getBoundingClientRect();
         const x = event.clientX - rect.left;
         const y = event.clientY - rect.top;
-        const hit = nodes.findIndex(node =>
-          Math.hypot(node.x - x, node.y - y) < 18
-        );
+        const hit = nodes.findIndex(node => Math.hypot(node.x - x, node.y - y) < 18);
 
         canvas.style.cursor = hit >= 0 ? "pointer" : "default";
-
         if (hit >= 0 && hit !== lastHit) {
           fire(hit, true);
-
-          if (motionPreference.matches) {
-            pulses = [];
+          if (reduceMotion) {
             draw();
           }
         }
-
         lastHit = hit;
       }
 
       canvas.addEventListener("pointermove", handlePointer);
-
       canvas.addEventListener("pointerdown", event => {
         lastHit = -1;
         handlePointer(event);
       });
 
-      canvas.addEventListener("pointerleave", () => {
-        lastHit = -1;
-      });
-
       window.addEventListener("resize", () => {
         build();
-        draw();
-      });
-
-      document.addEventListener("visibilitychange", updateAnimation);
-
-      motionPreference.addEventListener("change", () => {
-        setGifVisible(!motionPreference.matches);
-        updateAnimation();
+        if (reduceMotion) {
+          draw();
+        }
       });
 
       build();
-      draw();
-
-      const observer = new IntersectionObserver(entries => {
-        inView = entries[0].isIntersecting;
-        updateAnimation();
-      });
-
-      observer.observe(canvas);
-      updateAnimation();
+      if (reduceMotion) {
+        draw();
+      } else {
+        requestAnimationFrame(loop);
+      }
     })();
   </script>
 </body>
