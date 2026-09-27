@@ -1,0 +1,5 @@
+Experiment,Episodes,Alpha,Gamma,Epsilon,Success Rate
+Random Agent,-,-,-,-,0.01
+Experiment 1,1000,0.8,0.95,1.0,0.70
+Experiment 2,3000,0.8,0.95,1.0,0.58
+Experiment 3,5000,0.8,0.95,1.0,0.72
